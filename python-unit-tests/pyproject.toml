@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-package"
+dynamic = ["version"]
+description = "Python пакет с простыми примерами для юнит-тестроивания."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.hatch.version]
+path = "my_package/__init__.py"
+
+[tool.ruff]
+exclude = [
+    ".venv",
+]
+line-length = 120
+indent-width = 4
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN201",
+    "CPY001",
+    "D",
+    "RUF002",
+    "PLR2004",
+    "S101",
+    "S113",
+]
+fixable = ["ALL"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.format]
+indent-style = "space"
