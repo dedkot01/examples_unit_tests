@@ -1,26 +1,24 @@
 package third_module
 
 import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
 import org.scalamock.scalatest.MockFactory
 import java.time.ZoneOffset
 
-class CalendarTest extends AnyFlatSpec:
-  "A Calendar" should "show day of week today when monday" in:
-    val calendarMock = new Calendar(ZoneOffset.UTC):
-      override def getDayOfWeekToday(): Int = 0
+class CalendarTest extends AnyFlatSpec with MockFactory:
 
-    assert(calendarMock.showDayOfWeekToday() == "Понедельник")
+  trait CalendarFixture:
+    val mockCalendarUtils = mock[CalendarUtils]
+    val calendar = new Calendar(ZoneOffset.UTC, mockCalendarUtils)
 
-  it should "show day of week today when tuesday" in:
-    val calendarMock = new Calendar(ZoneOffset.UTC):
-      override def getDayOfWeekToday(): Int = 1
+  "A Calendar" should "show day of week today when monday" in new CalendarFixture:
+    (mockCalendarUtils.getDayOfWeekToday).expects(*).returns(0).once()
+    assert(calendar.showDayOfWeekToday == "Понедельник")
 
-    assert(calendarMock.showDayOfWeekToday() == "Вторник")
+  it should "show day of week today when tuesday" in new CalendarFixture:
+    (mockCalendarUtils.getDayOfWeekToday).expects(*).returns(1).once()
+    assert(calendar.showDayOfWeekToday == "Вторник")
 
-  it should "don't show day of week today when invalid value" in:
-    val calendarMock = new Calendar(ZoneOffset.UTC):
-      override def getDayOfWeekToday(): Int = -1
-
+  it should "don't show day of week today when invalid value" in new CalendarFixture:
+    (mockCalendarUtils.getDayOfWeekToday).expects(*).returns(-1).once()
     assertThrows[IllegalArgumentException]:
-      calendarMock.showDayOfWeekToday()
+      calendar.showDayOfWeekToday

@@ -3,12 +3,11 @@ package third_module
 import java.time.LocalDate
 import java.time.ZoneOffset
 
-class Calendar(val timeZoneOffset: ZoneOffset):
-  def getDayOfWeekToday(): Int =
-    LocalDate.now(timeZoneOffset).getDayOfWeek().getValue()
 
-  def showDayOfWeekToday(): String =
-    getDayOfWeekToday() match
+class Calendar(val timeZoneOffset: ZoneOffset, calendarUtils: CalendarUtils):
+
+  def showDayOfWeekToday: String =
+    calendarUtils.getDayOfWeekToday(timeZoneOffset) match
       case 0 => "Понедельник"
       case 1 => "Вторник"
       case 2 => "Среда"

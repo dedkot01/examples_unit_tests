@@ -44,7 +44,7 @@ public class CalendarTest {
             assertThrows(IllegalArgumentException.class, () -> {
                 spyCalendar.showDayOfWeekToday();
             });
-        assertEquals("Не существующий день недели. Ожидалось число от 0 до 6.", exception.getMessage());
+        assertEquals("Несуществующий день недели. Ожидалось число от 0 до 6.", exception.getMessage());
         Mockito.verify(spyCalendar, Mockito.times(1)).getDayOfWeekToday();
     }
 }
