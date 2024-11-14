@@ -17,7 +17,7 @@ path = "my_package/__init__.py"
 exclude = [
     ".venv",
 ]
-line-length = 120
+line-length = 80
 indent-width = 4
 target-version = "py311"
 
@@ -28,6 +28,7 @@ ignore = [
     "CPY001",
     "D",
     "RUF002",
+    "RUF003",
     "PLR2004",
     "S101",
     "S113",

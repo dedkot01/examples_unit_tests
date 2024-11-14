@@ -5,14 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// Пример тестирования поведения объектов класса,
+// проинициализированных в фикстуре
 class CarWithFixtureTest {
     private Car car1;
-    
+
+    // Фикстура должна заниматься подготовкой окружения для тестов
+    // с заранее известным состоянием,
+    // что гарантирует повторяемость процесса тестирования
     @BeforeEach
     void setUp() {
         car1 = new Car(1, 2);
     }
 
+    // При каждом запуске тестов, окружение инициализируется по новой
     @Test
     void testInit() {
         assertEquals(1, car1.x);

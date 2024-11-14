@@ -3,6 +3,7 @@ package com.example.third_module;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
+// Пример тестирования объектов с внешней зависимостью
 public class Calendar {
     private ZoneOffset zoneOffset;
 
@@ -10,11 +11,12 @@ public class Calendar {
         this.zoneOffset = timeZoneOffset;
     }
 
+    // Возвращаемое значение зависит от времени запуска функции
     public int getDayOfWeekToday() {
         return LocalDate.now(zoneOffset).getDayOfWeek().getValue();
     }
 
-    public String showDayOfWeekToday() {
+    public String getNameDayOfWeekToday() {
         switch (getDayOfWeekToday()) {
             case 0:
                 return "Понедельник";
@@ -31,7 +33,9 @@ public class Calendar {
             case 6:
                 return "Воскресенье";
             default:
-                throw new IllegalArgumentException("Несуществующий день недели. Ожидалось число от 0 до 6.");
+                throw new IllegalArgumentException(
+                    "Несуществующий день недели. Ожидалось число от 0 до 6."
+                );
         }
     }
 }

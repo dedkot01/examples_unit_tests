@@ -1,5 +1,6 @@
 package com.example.second_module;
 
+// Пример тестирования поведения объектов класса
 public class Car {
     int x;
     int y;

@@ -3,10 +3,9 @@ package third_module
 import java.time.LocalDate
 import java.time.ZoneOffset
 
-
+// Пример тестирования объектов с внешней зависимостью
 class Calendar(val timeZoneOffset: ZoneOffset, calendarUtils: CalendarUtils):
-
-  def showDayOfWeekToday: String =
+  def getNameDayOfWeekToday: String =
     calendarUtils.getDayOfWeekToday(timeZoneOffset) match
       case 0 => "Понедельник"
       case 1 => "Вторник"
@@ -15,4 +14,7 @@ class Calendar(val timeZoneOffset: ZoneOffset, calendarUtils: CalendarUtils):
       case 4 => "Пятница"
       case 5 => "Суббота"
       case 6 => "Воскресенье"
-      case _ => throw new IllegalArgumentException("Несуществующий день недели. Ожидалось число от 0 до 6.")
+      case _ =>
+        throw new IllegalArgumentException(
+          "Несуществующий день недели. Ожидалось число от 0 до 6."
+        )
